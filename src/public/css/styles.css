@@ -3029,6 +3029,17 @@ textarea.form-control-lg {
   opacity: 0.65;
 }
 
+/*SECCIÓN DE LAS TARGETAS DE ESTADO*/
+.card-hover {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-hover:hover {
+  transform: scale(1.05); /* Escala la tarjeta en un 5% */
+  box-shadow: 0 4px 8px rgb(218, 242, 246); /* Agrega una sombra suave */
+}
+/* FIN SECCIÓN ESTADO*/
+
 .btn-primary {
   color: #fff;
   background-color: #1abc9c;
@@ -11295,6 +11306,8 @@ html {
 .page-section {
   padding: 6rem 0;
   background-color: #daf2f6;
+  /*le aumenté esta línea de código para que se amplíe el color al tamaño de pc*/
+  min-height: 100vh;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
