@@ -1,6 +1,6 @@
 const {Schema,model} = require('mongoose')
 
-const duenioSchema = new Schema({
+const padrinoSchema = new Schema({
     nombre:{
         type:String,
         require:true
@@ -37,12 +37,8 @@ const duenioSchema = new Schema({
         type:String,
         required:true
     },
-    image:{
-        public_id:String,
-        secure_url:String
-    }
 },{
     timestamps:true
 })
 
-module.exports = model('Duenio', mascotasSchema);
+module.exports = model('Padrino', mascotasSchema);

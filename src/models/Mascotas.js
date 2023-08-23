@@ -25,7 +25,7 @@ const mascotasSchema = new Schema({
         type:String,
         require:true
     },
-    tamaño:{
+    tamanio:{
         type:String,
         require:true
     },
@@ -46,7 +46,7 @@ const mascotasSchema = new Schema({
         require:true
     },
     estado:{ /*Esta parte sería como una FK para determinar el estado y que se muestre el correspondiente*/
-        type:String,
+        type:Number,
         required:true
     },
     image:{

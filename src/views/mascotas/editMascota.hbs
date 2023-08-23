@@ -1,0 +1,66 @@
+<!-- Portfolio Section-->
+        <section class="page-section mt-5" id="Editar mascotas">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Actualizar Mascota</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-paw"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- Portfolio Section Form-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+                        <form action="/mascotas/edit/{{mascota._id}}?_method=PUT" method="POST" class="d-inline" enctype="multipart/form-data">
+                            
+                            <input type="hidden" name="_method" value="PUT">
+                            
+                            <!-- Nombre input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="nombre" type="text" placeholder="Ingresa el nombre..." required name="nombre"
+                                value="{{mascota.nombre}}"/>
+                                <label for="nombre">Nombre</label>
+                            </div>
+
+                            <!-- Especie input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="especie" type="text" placeholder="Ingresa la especie..." required name="especie" 
+                                value="{{mascota.especie}}"/>
+                                <label for="especie">Especie</label>
+                            </div>
+
+                            <!-- Raza input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="especie" type="text" placeholder="Ingresa la raza..." required name="Raza"
+                                value="{{mascota.raza}}"/>
+                                <label for="raza">Raza</label>
+                            </div>
+
+                            <!-- Rasgos input-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="rasgos" type="text" placeholder="Ingresa los rasgos aquí..." style="height: 10rem" required name="rasgos"> {{mascota.rasgos}}</textarea>
+                                <label for="rasgos">Rasgos</label>
+                            </div>
+
+                            <!-- Image input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="image" type="file" placeholder="Select your imagen..."  name="image" />
+                                <label for="image">Image</label>
+                            </div>
+
+                            <!-- Submit Button-->
+                            <div class="text-start">
+                            <button class="btn btn-primary btn-xl d-block w-100" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                        <div class="text-end mt-3">
+                            <a href="/portafolios" class="text-decoration-none">
+                                <button class="btn btn-secondary btn-xl d-block w-100 h-10" type="submit">Cancelar</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

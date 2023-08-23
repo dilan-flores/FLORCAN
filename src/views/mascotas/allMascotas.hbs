@@ -6,7 +6,7 @@
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-icon"><i class="fas fa-paw"></i></div>
             <div class="divider-custom-line"></div>
         </div>
 
@@ -15,7 +15,7 @@
             <section class="allMascota" id="allMascota">
                 <div class="container">
                         <div class="text-end mb-3">
-                            <a href="/mascota/add" class="text-decoration-none">
+                            <a href="/mascotas/add" class="text-decoration-none">
                                 <button class="btn btn-success btn-xl" type="submit">Crear nueva registro</button>
                             </a>
                         </div>
@@ -34,10 +34,10 @@
                                     </div>
                                     <div class="card-footer text-center">
                                         <button class="btn btn-primary btn-sm">Más información</button>
-                                        <a href="/mascota/edit/{{_id}}" >
+                                        <a href="/mascotas/edit/{{_id}}" >
                                         <button class="btn btn-warning btn-sm">Actualizar</button>
                                         </a>
-                                        <form action="/mascota/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
+                                        <form action="/mascotas/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-danger btn-sm">Delete</button>
                                         </form>
