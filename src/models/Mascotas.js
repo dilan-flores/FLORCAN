@@ -30,11 +30,11 @@ const mascotasSchema = new Schema({
         require:true
     },
     fecha_nacimiento:{
-        type:String,
+        type:Date,
         require:true
     },
     ingreso_empresa:{
-        type:String,
+        type:Date,
         require:true
     },
     rasgos:{
@@ -42,7 +42,7 @@ const mascotasSchema = new Schema({
         require:true
     },
     fecha_estado:{
-        type:String,
+        type:Date,
         require:true
     },
     estado:{ /*Esta parte sería como una FK para determinar el estado y que se muestre el correspondiente*/
@@ -57,4 +57,4 @@ const mascotasSchema = new Schema({
     timestamps:true
 })
 
-module.exports = model('mascotas',mascotasSchema)
+module.exports = model('Mascota', mascotasSchema);

@@ -21,28 +21,29 @@
                         </div>
                     <div class="row justify-content-center">
                         {{#each mascotas}}
-                        <div class="col-md-6 col-lg-4 mb-2">
-                            <div class="card h-100">
+                            <div class="col-md-6 col-lg-4 mb-2">
+                                <div class="card h-100">
                                 
-                                <img src="{{image.secure_url}}" class="card-img-top" alt="Skyscrapers"/>
+                                    <img src="{{image.secure_url}}" class="card-img-top" alt="Skyscrapers"/>
 
-                                <div class="card-body">
-                                    <h5 class="card-title text-decoration-underline">{{nombre}}</h5>
-                                    <p class="card-text">{{finca}}</p>
-                                    <small class="text-muted">{{fecha_nacimientos}}</small>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-primary btn-sm">Más información</button>
-                                    <a href="/mascota/edit/{{_id}}" >
-                                    <button class="btn btn-warning btn-sm">Actualizar</button>
-                                    </a>
-                                    <form action="/mascota/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
+                                    <div class="card-body">
+                                        <h5 class="card-title text-decoration-underline">{{nombre}}</h5>
+                                        <p class="card-text">{{raza}}</p>
+                                        <p class="card-text">{{color}}</p>
+                                        <small class="text-muted">{{finca}}</small>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <button class="btn btn-primary btn-sm">Más información</button>
+                                        <a href="/mascota/edit/{{_id}}" >
+                                        <button class="btn btn-warning btn-sm">Actualizar</button>
+                                        </a>
+                                        <form action="/mascota/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {{/each}}
                     </div>
                 </div>
