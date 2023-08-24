@@ -1,6 +1,8 @@
 const Mascota = require('../models/Mascotas');
 const { uploadImage, deleteImage } = require('../config/cloudinary');
 const fs = require('fs-extra');
+
+let EstadoMascota;
 // const exphbs = require('express-handlebars');
 // const hbs = exphbs.create();
 
@@ -35,7 +37,7 @@ const renderCampamento = async (req, res) => {
         
         // Filtrar las mascotas con estado igual a 1
         const mascotasFiltradas = mascotas.filter(mascota => mascota.estado === 1);
-        
+        EstadoMascota=1
         res.render("./mascotas/allMascotas", { mascotas: mascotasFiltradas });
     } catch (error) {
         console.error(error);
@@ -49,7 +51,7 @@ const renderAdopcion = async (req, res) => {
         
         // Filtrar las mascotas con estado igual a 1
         const mascotasFiltradas = mascotas.filter(mascota => mascota.estado === 2);
-        
+        EstadoMascota=2
         res.render("./mascotas/allMascotas", { mascotas: mascotasFiltradas });
     } catch (error) {
         console.error(error);
@@ -60,7 +62,7 @@ const renderAdopcion = async (req, res) => {
 const renderSin_estado = async (req, res) => {
     try {
         const mascotas = await Mascota.find().lean();
-        
+        EstadoMascota=3
         // Filtrar las mascotas con estado igual a 1
         const mascotasFiltradas = mascotas.filter(mascota => mascota.estado === 3);
         
@@ -75,6 +77,7 @@ const renderMascotasForm = async (req, res) => {
     res.render('mascotas/newFormMascota')
 }
 const renderNewMascotas = async (req, res) => {
+
     const {nombre,especie,raza,color,sexo,finca,tamanio,fecha_nacimiento,ingreso_empresa,rasgos,estado} = req.body
     const newMascota = new Mascota({nombre,especie,raza,color,sexo,finca,tamanio,fecha_nacimiento,ingreso_empresa,rasgos,estado})
 
@@ -84,7 +87,7 @@ const renderNewMascotas = async (req, res) => {
     newMascota.tamanio = ""
     newMascota.fecha_nacimiento = "2023-01-01T00:00:00.000+00:00"
     newMascota.ingreso_empresa = "2023-01-01T00:00:00.000+00:00"
-    newMascota.estado = 1
+    newMascota.estado = EstadoMascota
     newMascota.fecha_estado = "2023-01-01T00:00:00.000+00:00"
 
     if(!(req.files?.image)) return res.send("Se requiere una imagen")
@@ -97,7 +100,13 @@ const renderNewMascotas = async (req, res) => {
     //ALMACENA DATOS DEL FORMULARIO
     await fs.unlink(req.files.image.tempFilePath)
     await newMascota.save()
-    res.redirect('/estado')
+    if (newMascota.estado === 1) {
+        res.redirect('/mascotas/campamento')
+    } else if (newMascota.estado === 2) {
+        res.redirect('/mascotas/adopcion')
+    } else {
+        res.redirect('/mascotas/sin_estado')
+    }
 }
 const renderEditMascotasForm = async (req, res) => {
     const mascota = await Mascota.findById(req.params.id).lean()
@@ -125,8 +134,8 @@ const updateMascotas = async (req, res) => {
             fecha_estado:req.body.raza || Mascota.fecha_estado,
             estado:req.body.estado || Mascota.estado,
             image : {
-            public_id:imageUpload.public_id,
-            secure_url:imageUpload.secure_url
+                public_id:imageUpload.public_id,
+                secure_url:imageUpload.secure_url
             }
         }
         await fs.unlink(req.files.image.tempFilePath)
@@ -136,12 +145,24 @@ const updateMascotas = async (req, res) => {
         const {nombre,especie,raza,color,sexo,finca,tamanio,fecha_nacimiento,ingreso_empresa,rasgos,estado}= req.body
         await Mascota.findByIdAndUpdate(req.params.id,{nombre,especie,raza,color,sexo,finca,tamanio,fecha_nacimiento,ingreso_empresa,rasgos,estado})
     }
-    res.redirect('/estado')
+    if (mascota.estado === 1) {
+        res.redirect('/mascotas/campamento')
+    } else if (mascota.estado === 2) {
+        res.redirect('/mascotas/adopcion')
+    } else {
+        res.redirect('/mascotas/sin_estado')
+    }
 }
 const deleteMascotas = async (req, res) => {
     const mascota = await Mascota.findByIdAndDelete(req.params.id)
     await deleteImage(mascota.image.public_id)
-    res.redirect('/estado')
+    if (mascota.estado === 1) {
+        res.redirect('/mascotas/campamento')
+    } else if (mascota.estado === 2) {
+        res.redirect('/mascotas/adopcion')
+    } else {
+        res.redirect('/mascotas/sin_estado')
+    }
 }
 
 module.exports = {

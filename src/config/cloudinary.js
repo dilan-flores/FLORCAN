@@ -8,7 +8,7 @@ cloudinary.config({
 });
 
 module.exports.uploadImage = async(filePath) => {
-    return await cloudinary.uploader.upload(filePath,{folder:'estado'})
+    return await cloudinary.uploader.upload(filePath,{folder:'mascotas'})
 }
 
 module.exports.deleteImage = async (publicId)=>{
